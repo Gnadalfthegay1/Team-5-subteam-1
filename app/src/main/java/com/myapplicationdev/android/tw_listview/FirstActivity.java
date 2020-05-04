@@ -1,5 +1,6 @@
 package com.myapplicationdev.android.tw_listview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,13 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FirstActivity extends AppCompatActivity {
 
     ListView lv;
     ArrayAdapter aa;
-    ArrayList<Year> al;
+    ArrayList<String> al;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,12 @@ public class FirstActivity extends AppCompatActivity {
         lv = findViewById(R.id.lvYear);
 
 
-        al = new ArrayList<Year>();
-        al.add(new Year("Year 1"));
-        al.add(new Year("Year 2"));
-        al.add(new Year("Year 3"));
+        al = new ArrayList<String>();
+        al.add("Year 1");
+        al.add("Year 2");
+        al.add("Year 3");
 
-        aa = new YearAdapter(this, R.layout.row, al);
+        aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al);
 
         lv.setAdapter(aa);
 
@@ -37,10 +39,13 @@ public class FirstActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Year selectedYear = al.get(position);
+                String selectedYear = al.get(position);
 
-                Toast.makeText(FirstActivity.this, selectedYear.getYear(),
+                Toast.makeText(FirstActivity.this, selectedYear,
                         Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getApplicationContext(),SecondActivity.class);
+                i.putExtra("year", selectedYear);
+                startActivity(i);
             }
         });
 

@@ -2,9 +2,9 @@ package com.myapplicationdev.android.tw_listview;
 
 public class Module {
     private String module;
-    private boolean type;
+    private String type;
 
-    public Module(String module, boolean type) {
+    public Module(String module, String type) {
         this.module = module;
         this.type = type;
     }
@@ -13,7 +13,7 @@ public class Module {
         return module;
     }
 
-    public boolean isType() {
+    public String isType() {
         return type;
     }
 }

@@ -4,12 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ModuleAdapter {
+public class ModuleAdapter extends ArrayAdapter<Module> {
     private ArrayList<Module> module;
     private Context context;
     private TextView tvModule;
@@ -43,12 +44,12 @@ public class ModuleAdapter {
         // The parameter "position" is the index of the
         //  row ListView is requesting.
         //  We get back the food at the same index.
-        Module currentYear = module.get(position);
+        Module currentModule = module.get(position);
         // Set the TextView to show the food
 
-        tvModule.setText(currentYear.getModule());
+        tvModule.setText(currentModule.getModule());
         // Set the image to star or nostar accordingly
-        if(currentYear.isType()) {
+        if(currentModule.isType() == "prog") {
             ivModule.setImageResource(R.drawable.prog);
         }
         else {
